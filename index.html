@@ -1,0 +1,288 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>el-kniga.com.ua</title>
+	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.9.1.custom.min.css"/>
+	<link rel="stylesheet" href="css/jquery.countdown.css">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<![endif]-->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.countdown.min.js"></script>
+	<script src="js/jquery.countdown-ru.js"></script>
+	<script src="js/jquery-ui-1.9.1.custom.min.js"></script>
+	<script>
+	$(document).ready(function() {
+
+		var austDay = new Date();
+		austDay = new Date(austDay.getFullYear(), austDay.getMonth() , austDay.getDate() + 1 + austDay.getDate()%2);
+		$('#timesCountdown').countdown({until: austDay, format: 'DHMS'});
+
+		$( "#dialog" ).dialog({
+			autoOpen: false,
+			width: 300,
+			height: 'auto',
+			modal: true
+		})
+		$( "#advice-dialog" ).dialog({
+			autoOpen: false,
+			width: 302,
+			height: 'auto',
+			modal: true
+		});
+
+		$('.call-me').click(function(elem){
+			$( "#advice-dialog" ).dialog( "open" );
+			elem.preventDefault();
+		});
+		$('.buy-button').click(function(elem){
+			elem = elem || window.event;
+			var src = elem.target || elem.srcElement;
+			$( "#dialog" ).dialog({
+				title: 'Заказ '+$(src).data('device')
+			});
+			$( "input[name=device]").val($(src).data('device'));
+			$( "#dialog" ).dialog( "open" );
+		});
+		$('.advice-dialog-button').click(function(elem){
+			$.post(
+				"send.php",
+				 $(".advice-form").serialize()
+			)
+			.done(function( jqXHR, status ) {
+				$( '#advice-dialog' ).dialog( "close" );
+			});
+			elem.preventDefault();
+		});
+
+		$('.advice-dialog-button-external').click(function(elem){
+			$.post(
+				"send.php",
+				 $(".advice-form-external").serialize()
+			)
+			.done(function( jqXHR, status ) {
+				$('.advice-dialog-button-external').hide();
+				$('.sended').show();
+
+			});
+			elem.preventDefault();
+		});
+		$('.dialog-button').click(function(elem){
+			$.post(
+				"send.php",
+				 $(".dialog-form").serialize()
+			).done(function( jqXHR, status ) {
+				$( '#dialog' ).dialog( "close" );
+			});
+			elem.preventDefault();
+		});
+
+
+	});
+	</script>
+</head>
+<body>
+	<div class="hidden">
+		<div id="advice-dialog" class="dialog" title="Какую книгу мне выбрать?">
+			<form class="advice-form" action="send.php">
+				<label for="name">Имя:</label>
+				<input type="text" name="name" id="name">
+				<label for="tel">Телефон:</label>
+				<input type="tel" name="tel" id="tel">
+				<label for="email">E-mail:</label>
+				<input type="email" name="email" id="email">
+				<input type="hidden" name="action" value="advice">
+				<input class="advice-dialog-button styled-button" type="submit" value="Заказать звонок">
+			</form>
+		</div>
+
+		<div id="dialog" class="dialog" title="Dialog Title">
+			<form class="dialog-form" action="send.php">
+				<label for="name">Имя:</label>
+				<input type="text" name="name" id="name">
+				<label for="tel">Телефон:</label>
+				<input type="tel" name="tel" id="tel">
+				<label for="email">E-mail:</label>
+				<input type="email" name="email" id="email">
+				<input type="hidden" name="type" value="buy">
+				<input type="hidden" name="device" value="">
+				<input class="dialog-button styled-button" type="submit" value="Купить">
+			</form>
+		</div>
+	</div>
+	<header class="header info">
+		<h1 class="title designosaur">Электронные книги<br>с доставкой к Вам домой</h1>
+		<section class="phone-wrapper">
+			<span class="phone designosaur">+38&nbsp;(050)&nbsp;453 45 67</span>
+		</section>
+	</header>
+
+	<section class="info">
+		<section class="refund designosaur">
+			<img src="images/refund.png" alt="Возврат денег гарантирован">
+			<div>Если книга Вам не понравилась<br>мы вернём деньги</div>
+		</section>
+		<section class="call-me-wrapper">
+			<button class="call-me styled-button">Заказать звонок</button>
+		</section>
+	</section>
+
+	<section class="hot-proposition info green">
+		<section class="action designosaur">
+			<h3>При покупке книги обложка в Подарок!<br>
+			До конца акции осталось</h3>
+			<div id="timesCountdown"></div>
+		</section>
+	</section>
+
+	<section class="best-selling info">
+		<figure class="device-wrapper">
+			<div class="label">
+				<div class="old-price price">950 грн</div>
+				<div class="new-price price">799 грн</div>
+			</div>
+			<img class="device-img" src="images/devices/pocket-book-301.png" alt="Pocket Book 301">
+			<figcaption class="device-caption">Pocket Book 301</figcaption>
+			<button  data-device="Pocket Book 301" class="buy-button">Купить</button>
+		</figure>
+
+		<div class="quick-form designosaur">
+			<h2 class="quick-form-title">Какую книгу мне выбрать?</h2>
+			<form class="advice-form-external" action="send.php">
+				<label for="name">Имя:</label>
+				<input type="text" name="name" id="name">
+				<label for="tel">Телефон:</label>
+				<input type="tel" name="tel" id="tel">
+				<label for="email">E-mail:</label>
+				<input type="email" name="email" id="email">
+				<input type="hidden" name="action" value="advice">
+				<input class="advice-dialog-button-external styled-button" type="submit" value="Заказать звонок">
+				<div class="sended tick">Заявка отправлена</div>
+			</form>
+		</div>
+	</section>
+
+	<section class="reasons info green">
+		<span class="marked">3 причины купить электронную книгу у нас:</span>
+		<ul>
+			<li class="tick"><div class="marked">Гарантия качества</div> Мы гарантируем 100% гарантию качества, по этому Вы можете быть уверенны, что получите только самый качественный товар.</li>
+			<li class="tick"><div class="marked">Бесплатная доставка</div> Наши курьеры бесплатно доставят книгу в любую точку Украины, непосредственно к Вашему дому.</li>
+			<li class="tick"><div class="marked">Различные ценовые категории</div> У нас Вы сможете выбрать книгу доступную любому карману</li>
+		</ul>
+	</section>
+
+	<section class="devices">
+		<figure class="device-wrapper">
+			<div class="label">
+				<div class="old-price price">1350 грн</div>
+				<div class="new-price price">1200 грн</div>
+			</div>
+			<img class="device-img" src="images/devices/pocket-book-611.png" alt="Pocket Book 611">
+			<figcaption class="device-caption">Pocket Book 611</figcaption>
+			<button data-device="Pocket Book 611" class="buy-button">Купить</button>
+		</figure>
+		<figure class="device-wrapper">
+			<div class="label">
+				<div class="old-price price">1750 грн</div>
+				<div class="new-price price">1699 грн</div>
+			</div>
+			<img class="device-img" src="images/devices/pocket-book-622.png" alt="Pocket Book 622">
+			<figcaption class="device-caption">Pocket Book 622</figcaption>
+			<button data-device="Pocket Book 622" class="buy-button">Купить</button>
+		</figure>
+		<figure class="device-wrapper">
+			<div class="label">
+				<div class="old-price price">1050 грн</div>
+				<div class="new-price price">899 грн</div>
+			</div>
+			<img class="device-img" src="images/devices/pocket-book-360.png" alt="Pocket Book 360">
+			<figcaption class="device-caption">Pocket Book 360</figcaption>
+			<button data-device="Pocket Book 360" class="buy-button">Купить</button>
+		</figure>
+		<br>
+		<figure class="device-wrapper">
+			<div class="label">
+				<div class="old-price price">950 грн</div>
+				<div class="new-price price">799 грн</div>
+			</div>
+			<img class="device-img" src="images/devices/pocket-book-301.png" alt="Pocket Book 301">
+			<figcaption class="device-caption">Pocket Book 301</figcaption>
+			<button data-device="Pocket Book 301" class="buy-button">Купить</button>
+		</figure>
+		<figure class="device-wrapper">
+			<div class="label">
+				<div class="old-price price">2699 грн</div>
+				<div class="new-price price">2350 грн</div>
+			</div>
+			<img class="device-img" src="images/devices/pocket-book-912.png" alt="Pocket Book 912">
+			<figcaption class="device-caption">Pocket Book 912</figcaption>
+			<button data-device="Pocket Book 912" class="buy-button">Купить</button>
+		</figure>
+		<figure class="device-wrapper">
+			<div class="label">
+				<div class="old-price price">1500 грн</div>
+				<div class="new-price price">1399 грн</div>
+			</div>
+			<img class="device-img" src="images/devices/pocket-book-612.png" alt="Pocket Book 612">
+			<figcaption class="device-caption">Pocket Book 612</figcaption>
+			<button data-device="Pocket Book 612" class="buy-button">Купить</button>
+		</figure>
+	</section>
+
+	<section class="comments info">
+		<div class="title designosaur">Отзывы клиентов:</div>
+		<article class="comment">
+			<img src="images/users/-_gMRPQcx00.jpg" alt="">
+			<div>
+				<div class="username designosaur">Арсений</div>
+				Купил две, себе и жене. Покупкой довольны. Подкупили предустановленная библиотека, словари ABBYY Lingvo и конечно же Touchscreen. Спасибо за доставку. Все супер!!!
+			</div>
+		</article>
+
+		<article class="comment">
+			<img src="images/users/a77HFSGF3ag.jpg" alt="">
+			<div>
+				<div class="username designosaur">Дмитрий</div>
+				Заказал себе Pocket Book 301. Доставили очень быстро! Оптимальное соотношение "цена/качество".
+			</div>
+		</article>
+
+		<article class="comment">
+			<img src="images/users/bv1uKBgZk7c.jpg" alt="">
+			<div>
+				<div class="username designosaur">Татьяна</div>
+				Ридер сам по себе не плохой.Для книги функций достаточно.Пользуюсь уже два месяца. Читает много форматов. Зарядка держится очень длительное время при том что сидишь в интернете и слушаешь музыку. Ставлю пятёрку
+			</div>
+		</article>
+
+		<article class="comment">
+			<img src="images/users/d_cf701107.jpg" alt="">
+			<div>
+				<div class="username designosaur">Александр</div>
+				Книга замечательная.Сенсор удобный,чтение просто невероятное,и глаза не устают,и легко носить с собой.Мне,как студентке,оказалась очень полезна.И на досуге читаю худ.литературу.
+			</div>
+		</article>
+
+		<article class="comment">
+			<img src="images/users/W4alIzv0BZk.jpg" alt="">
+			<div>
+				<div class="username designosaur">Василий</div>
+				Книга отличная!!! Читает все форматы. К моему удивлению читать на ней книгу в формате djvu оказалось удобнее чем на планшете!!! Качество сборки на 5+ сенсор конечно туговат(не так быстро реагирует как на планшетах) но не чё смериться можно.
+			</div>
+		</article>
+	</section>
+
+	<footer class="footer info">
+		<section class="refund designosaur">
+			<img src="images/refund.png" alt="Возврат денег гарантирован">
+			<div>Если книга Вам не понравилась<br>мы вернём деньги</div>
+		</section>
+		<section class="phone-wrapper designosaur">
+			<span class="phone">+38&nbsp;(050)&nbsp;453 45 67</span>
+		</section>
+	</footer>
+
+</body>
+</html>
