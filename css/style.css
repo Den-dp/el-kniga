@@ -329,6 +329,7 @@ margin: 0 auto; */
 	color: white;
 	text-shadow: 0 1px 0 gray;
 	position: relative;
+	border: 1px solid black;
 }
 	.phone-wrapper {
 		position: absolute;
