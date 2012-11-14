@@ -6,7 +6,6 @@ html, body {
 	}
 
 @font-face {
-	/* This declaration targets everything else */
 	font-family: 'Designosaur';
 	src:
 	url('fonts/Designosaur-Italic.ttf') format('truetype');
@@ -30,16 +29,20 @@ html, body {
 	border: 1px solid green;
 	background: #CEF5BF;
 	}
+.player {
+	display: block;
+	margin: 0 auto;
+	}
 
 /*-----------------------------------------------*/
 /* forms */
-.dialog-form,
-.advice-form,
+.buy-dialog-form,
+.order-dialog-form,
 .advice-form-external {
 	width: 100%;
 }
-.dialog-form input,
-.advice-form input,
+.buy-dialog-form input,
+.order-dialog-form input,
 .advice-form-external input {
 	display: block;
 	padding: 5px 15px;
@@ -48,18 +51,18 @@ html, body {
 	box-shadow: -3px 3px 0 #B00;
 	width: 90%;
 	}
-	.dialog-form input[type=submit],
-	.advice-form input[type=submit],
+	.buy-dialog-form input[type=submit],
+	.order-dialog-form input[type=submit],
 	.advice-form-external input[type=submit]{
 		margin: 20px auto 0;
 	}
-	.dialog-form input:hover,
-	.advice-form input:hover,
+	.buy-dialog-form input:hover,
+	.order-dialog-form input:hover,
 	.advice-form-external  input:hover{
 		border: 1px solid #D00;
 		}
-	.dialog-form input:focus,
-	.advice-form input:focus,
+	.buy-dialog-form input:focus,
+	.order-dialog-form input:focus,
 	.advice-form-external  input:focus{
 		border: 1px solid #B00;
 		box-shadow: -2px 2px 0 #F00 !important;
@@ -101,7 +104,7 @@ html, body {
 	}
 
 /*-----------------------------------------------*/
-.info{
+.fixed-width{
 	width: 717px;
 	margin: 0 auto;
 	position: relative;
@@ -134,13 +137,6 @@ html, body {
 	}
 	.action {
 		text-align: center;
-/* 		background: red;
-padding: 5px;
-box-shadow: -3px 3px 0px #B00;
-color: white;
-width: 40%;
-min-width: 300px;
-margin: 0 auto; */
 		}
 
 /*-----------------------------------------------*/
@@ -150,6 +146,7 @@ margin: 0 auto; */
 	}
 	.quick-form-title {
 		margin: 0;
+		text-align: center;
 	}
 	.quick-form {
 		width: 53%;
@@ -329,6 +326,7 @@ margin: 0 auto; */
 	color: white;
 	text-shadow: 0 1px 0 gray;
 	position: relative;
+	border: 1px solid black;
 }
 	.phone-wrapper {
 		position: absolute;
