@@ -13,80 +13,12 @@
 	<script src="js/jquery.countdown.min.js"></script>
 	<script src="js/jquery.countdown-ru.js"></script>
 	<script src="js/jquery-ui-1.9.1.custom.min.js"></script>
-	<script>
-	$(document).ready(function() {
-
-		var austDay = new Date();
-		austDay = new Date(austDay.getFullYear(), austDay.getMonth() , austDay.getDate() + 1 + austDay.getDate()%2);
-		$('#timesCountdown').countdown({until: austDay, format: 'DHMS'});
-
-		$( "#dialog" ).dialog({
-			autoOpen: false,
-			width: 300,
-			height: 'auto',
-			modal: true
-		})
-		$( "#advice-dialog" ).dialog({
-			autoOpen: false,
-			width: 302,
-			height: 'auto',
-			modal: true
-		});
-
-		$('.call-me').click(function(elem){
-			$( "#advice-dialog" ).dialog( "open" );
-			elem.preventDefault();
-		});
-		$('.buy-button').click(function(elem){
-			elem = elem || window.event;
-			var src = elem.target || elem.srcElement;
-			$( "#dialog" ).dialog({
-				title: 'Заказ '+$(src).data('device')
-			});
-			$( "input[name=device]").val($(src).data('device'));
-			$( "#dialog" ).dialog( "open" );
-		});
-		$('.advice-dialog-button').click(function(elem){
-			$.post(
-				"send.php",
-				 $(".advice-form").serialize()
-			)
-			.done(function( jqXHR, status ) {
-				$( '#advice-dialog' ).dialog( "close" );
-			});
-			elem.preventDefault();
-		});
-
-		$('.advice-dialog-button-external').click(function(elem){
-			$.post(
-				"send.php",
-				 $(".advice-form-external").serialize()
-			)
-			.done(function( jqXHR, status ) {
-				$('.advice-dialog-button-external').hide();
-				$('.sended').show();
-
-			});
-			elem.preventDefault();
-		});
-		$('.dialog-button').click(function(elem){
-			$.post(
-				"send.php",
-				 $(".dialog-form").serialize()
-			).done(function( jqXHR, status ) {
-				$( '#dialog' ).dialog( "close" );
-			});
-			elem.preventDefault();
-		});
-
-
-	});
-	</script>
+	<script src="js/ui.js"></script>
 </head>
 <body>
 	<div class="hidden">
-		<div id="advice-dialog" class="dialog" title="Какую книгу мне выбрать?">
-			<form class="advice-form" action="send.php">
+		<div id="order-dialog" class="dialog" title="Хочу подарок!">
+			<form class="order-dialog-form" action="send.php">
 				<label for="name">Имя:</label>
 				<input type="text" name="name" id="name">
 				<label for="tel">Телефон:</label>
@@ -94,12 +26,12 @@
 				<label for="email">E-mail:</label>
 				<input type="email" name="email" id="email">
 				<input type="hidden" name="action" value="advice">
-				<input class="advice-dialog-button styled-button" type="submit" value="Заказать звонок">
+				<input class="order-dialog-button styled-button" type="submit" value="Заказать звонок">
 			</form>
 		</div>
 
-		<div id="dialog" class="dialog" title="Dialog Title">
-			<form class="dialog-form" action="send.php">
+		<div id="buy-dialog" class="dialog" title="Dialog Title">
+			<form class="buy-dialog-form" action="send.php">
 				<label for="name">Имя:</label>
 				<input type="text" name="name" id="name">
 				<label for="tel">Телефон:</label>
@@ -108,18 +40,18 @@
 				<input type="email" name="email" id="email">
 				<input type="hidden" name="type" value="buy">
 				<input type="hidden" name="device" value="">
-				<input class="dialog-button styled-button" type="submit" value="Купить">
+				<input class="buy-dialog-button styled-button" type="submit" value="Купить">
 			</form>
 		</div>
 	</div>
-	<header class="header info">
+	<header class="header fixed-width">
 		<h1 class="title designosaur">Электронные книги<br>с доставкой к Вам домой</h1>
 		<section class="phone-wrapper">
 			<span class="phone designosaur">+38&nbsp;(050)&nbsp;453 45 67</span>
 		</section>
 	</header>
 
-	<section class="info">
+	<section class="fixed-width">
 		<section class="refund designosaur">
 			<img src="images/refund.png" alt="Возврат денег гарантирован">
 			<div>Если книга Вам не понравилась<br>мы вернём деньги</div>
@@ -129,15 +61,15 @@
 		</section>
 	</section>
 
-	<section class="hot-proposition info green">
+	<section class="hot-proposition fixed-width green">
 		<section class="action designosaur">
-			<h3>При покупке книги обложка в Подарок!<br>
+			<h3>При покупке книги фонарик в ПОДАРОК!<br>
 			До конца акции осталось</h3>
 			<div id="timesCountdown"></div>
 		</section>
 	</section>
 
-	<section class="best-selling info">
+	<section class="best-selling fixed-width">
 		<figure class="device-wrapper">
 			<div class="label">
 				<div class="old-price price">950 грн</div>
@@ -149,7 +81,7 @@
 		</figure>
 
 		<div class="quick-form designosaur">
-			<h2 class="quick-form-title">Какую книгу мне выбрать?</h2>
+			<h2 class="quick-form-title">Хочу подарок!</h2>
 			<form class="advice-form-external" action="send.php">
 				<label for="name">Имя:</label>
 				<input type="text" name="name" id="name">
@@ -158,13 +90,13 @@
 				<label for="email">E-mail:</label>
 				<input type="email" name="email" id="email">
 				<input type="hidden" name="action" value="advice">
-				<input class="advice-dialog-button-external styled-button" type="submit" value="Заказать звонок">
+				<input class="order-dialog-button-external styled-button" type="submit" value="Заказать звонок">
 				<div class="sended tick">Заявка отправлена</div>
 			</form>
 		</div>
 	</section>
 
-	<section class="reasons info green">
+	<section class="reasons fixed-width green">
 		<span class="marked">3 причины купить электронную книгу у нас:</span>
 		<ul>
 			<li class="tick"><div class="marked">Гарантия качества</div> Мы гарантируем 100% гарантию качества, по этому Вы можете быть уверенны, что получите только самый качественный товар.</li>
@@ -201,7 +133,6 @@
 			<figcaption class="device-caption">Pocket Book 360</figcaption>
 			<button data-device="Pocket Book 360" class="buy-button">Купить</button>
 		</figure>
-		<br>
 		<figure class="device-wrapper">
 			<div class="label">
 				<div class="old-price price">950 грн</div>
@@ -231,7 +162,9 @@
 		</figure>
 	</section>
 
-	<section class="comments info">
+	<section class="comments fixed-width">
+		<div class="title designosaur">Видео отзывы:</div>
+		<iframe class="player" width="640" height="480" src="http://www.youtube.com/embed/YmoU-CHtNzo?rel=0" frameborder="0" allowfullscreen></iframe>
 		<div class="title designosaur">Отзывы клиентов:</div>
 		<article class="comment">
 			<img src="images/users/-_gMRPQcx00.jpg" alt="">
@@ -240,7 +173,6 @@
 				Купил две, себе и жене. Покупкой довольны. Подкупили предустановленная библиотека, словари ABBYY Lingvo и конечно же Touchscreen. Спасибо за доставку. Все супер!!!
 			</div>
 		</article>
-
 		<article class="comment">
 			<img src="images/users/a77HFSGF3ag.jpg" alt="">
 			<div>
@@ -248,7 +180,6 @@
 				Заказал себе Pocket Book 301. Доставили очень быстро! Оптимальное соотношение "цена/качество".
 			</div>
 		</article>
-
 		<article class="comment">
 			<img src="images/users/bv1uKBgZk7c.jpg" alt="">
 			<div>
@@ -256,15 +187,13 @@
 				Книга замечательная.Сенсор удобный,чтение просто невероятное,и глаза не устают,и легко носить с собой.Мне,как студентке,оказалась очень полезна.И на досуге читаю худ.литературу.
 			</div>
 		</article>
-
 		<article class="comment">
 			<img src="images/users/d_cf701107.jpg" alt="">
 			<div>
-				<div class="username designosaur">Александр</div>
+				<div class="username designosaur">Лидия</div>
 				Ридер сам по себе не плохой.Для книги функций достаточно.Пользуюсь уже два месяца. Читает много форматов. Зарядка держится очень длительное время при том что сидишь в интернете и слушаешь музыку. Ставлю пятёрку
 			</div>
 		</article>
-
 		<article class="comment">
 			<img src="images/users/W4alIzv0BZk.jpg" alt="">
 			<div>
@@ -274,7 +203,7 @@
 		</article>
 	</section>
 
-	<footer class="footer info">
+	<footer class="footer fixed-width">
 		<section class="refund designosaur">
 			<img src="images/refund.png" alt="Возврат денег гарантирован">
 			<div>Если книга Вам не понравилась<br>мы вернём деньги</div>
