@@ -3,6 +3,7 @@ html, body {
 	padding: 0;
 	font-family: Calibri, sans-serif;
 	min-width: 790px;
+	background: url(../images/diagonal.png);
 	}
 
 @font-face {
@@ -13,8 +14,21 @@ html, body {
 	font-style: normal;
 	}
 
+@font-face {
+	font-family: 'PFDinTextCompPro-Regular';
+	src:
+	url('fonts/PFDinTextCompPro-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	}
+.pfdin {
+	font-family: PFDinTextCompPro-Regular;
+	}
 .designosaur {
 	font-family: Designosaur;
+	}
+.verdana {
+	font-family: Verdana, Verdana, Geneva, sans-serif;
 	}
 
 .title{
@@ -25,9 +39,10 @@ html, body {
 .hidden {
 	display: none;
 	}
-.green {
-	border: 1px solid green;
-	background: #CEF5BF;
+.info-block {
+	border: 2px solid #3d7100;
+	border-radius: 5px;
+	background: url(../images/grid.jpg);
 	}
 .player {
 	display: block;
@@ -92,26 +107,33 @@ html, body {
 .header {
 	position: relative;
 	padding: 5px 0;
-	background: black;
 	color: white;
 	}
 	.header .title {
-		color: #CEF5BF;
-		text-shadow: 1px 1px 0 green,
-					-1px -1px 0 green,
-					-1px 1px 0 green,
-					1px -1px 0 green;
-	}
+		color: #8acb1e;
+		font-size: 36px;
+		line-height: 30px;
+		}
+	.header .title .sub {
+		color: #a4a8ac;
+		}
 
 /*-----------------------------------------------*/
-.fixed-width{
-	width: 717px;
+.page-wrapper{
+	width: 957px;
+	height: 100%;
 	margin: 0 auto;
 	position: relative;
-	padding: 10px 40px;
+	background: white;
+	box-shadow: 0 0 20px black ;
+	}
+.fixed-width{
+	position: relative;
+	margin: 10px 20px;
 	}
 	.refund {
 		padding: 10px;
+		font-style: oblique;
 		}
 		.refund > * {
 			vertical-align: middle;
@@ -137,6 +159,10 @@ html, body {
 	}
 	.action {
 		text-align: center;
+		}
+	.action-message {
+		font-size: 1.1em;
+		padding: 10px 0;
 		}
 
 /*-----------------------------------------------*/
@@ -278,31 +304,50 @@ html, body {
 				}
 
 /*-----------------------------------------------*/
+.ok {
+	background: url(../images/ok.png) no-repeat;
+	padding-left: 40px;
+	}
 .reasons {
 	padding: 10px 40px;
+	}
+	.reasons ul {
+		padding: 0 155px;
+		width: 530px;
 	}
 	.tick {
 		font-size: 1em;
 		list-style: none;
 		background: url(../images/tick.png) no-repeat 0px 1px;
-		padding-left: 40px;
+		padding: 0 0 30px 80px;
 		}
 		.marked {
-			font-size: 1.2em;
+			font-size: 1.8em;
 			font-weight: bolder;
-			font-family: designosaur, Cambria, serif;
+			text-align: center;
+			color: #3d7100;
+		}
+		.marker {
+			font-size: 1.7em;
+			font-style: oblique;
+			color: #4b4b4b;
 			}
 
 /*-----------------------------------------------*/
 .comments {
-	padding: 0 40px;
-	background: #E4E4E4;
-	border: 1px solid silver;
 	height: 100%;
+	padding: 0 40px;
+	border: 2px solid #336600;
+	border-radius: 5px;
+	background: url(../images/grid.jpg);
 	}
 	.comments .title {
 		width: 600px;
 		margin: 10px auto;
+		text-align: center;
+		font-style: oblique;
+		font-size: 24px;
+		color: #4b4b4b;
 		}
 	.comment{
 		height: 100px;
@@ -317,30 +362,46 @@ html, body {
 			}
 			.username {
 				color: green;
-				font-weight: bolder;
+				font-style: oblique;
+				font-size: 18px;
 				}
 
 /*-----------------------------------------------*/
 .footer {
-	background: black;
-	color: white;
-	text-shadow: 0 1px 0 gray;
 	position: relative;
-	border: 1px solid black;
-}
+	background: #488600;
+	border-radius: 5px;
+	margin: 20px;
+	color: white;
+	text-shadow: 2px 2px 0 #165016;
+	}
 	.phone-wrapper {
+		text-shadow: 2px 2px 0 #165016;
 		position: absolute;
 		right: 0;
-		top: 0;
+		top: 0px;
 		width: 50%;
 		text-align: right;
+		}
+	.header .phone-wrapper {
+		top: 30px;
+		width: 60%;
+		text-align: right;
 		margin-right: 20px;
+		background-image: -webkit-linear-gradient(top, #72C400 0%, #549400 100%);
+		background-image: -moz-linear-gradient(top, #72C400 0%, #549400 100%);
+		background-image: -ms-linear-gradient(top, #72C400 0%, #549400 100%);
+		background-image: -o-linear-gradient(top, #72C400 0%, #549400 100%);
+		background-image: linear-gradient(top, #72C400 0%, #549400 100%);
+		height: 60px;
+		border-radius: 5px;
 		}
 		.phone {
 			text-align: right;
-			font-style: italic;
 			line-height: 105px;
 			font-size: 1.4em;
-			border-bottom: 1px dashed;
+			padding-right: 20px;
 			}
-
+		.header .phone{
+			line-height: 55px;
+			}
