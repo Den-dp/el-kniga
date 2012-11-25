@@ -17,6 +17,13 @@ $(document).ready(function() {
 		modal: true
 	});
 
+	$( "#confirmation-dialog" ).dialog({
+		autoOpen: false,
+		width: 302,
+		height: 'auto',
+		modal: true
+	});
+
 	$('.call-me').click(function(elem){
 		$( "#order-dialog" ).dialog( "open" );
 		elem.preventDefault();
@@ -38,6 +45,7 @@ $(document).ready(function() {
 			$(".order-form").serialize()
 		).done(function( jqXHR, status ) {
 			$( '#order-dialog' ).dialog( "close" );
+			$( "#confirmation-dialog" ).dialog( 'open' );
 		});
 		elem.preventDefault();
 	});
@@ -59,6 +67,7 @@ $(document).ready(function() {
 			$(".buy-dialog-form").serialize()
 		).done(function( jqXHR, status ) {
 			$( '#buy-dialog' ).dialog( "close" );
+			$( "#confirmation-dialog" ).dialog( 'open' );
 		});
 		elem.preventDefault();
 	});

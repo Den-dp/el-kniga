@@ -3,6 +3,7 @@ html, body {
 	padding: 0;
 	font-family: Calibri, sans-serif;
 	min-width: 790px;
+	background: url(../images/diagonal.png);
 	}
 
 @font-face {
@@ -13,8 +14,21 @@ html, body {
 	font-style: normal;
 	}
 
+@font-face {
+	font-family: 'PFDinTextCompPro-Regular';
+	src:
+		url('fonts/PFDinTextCompPro-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	}
+.pfdin {
+	font-family: PFDinTextCompPro-Regular;
+	}
 .designosaur {
 	font-family: Designosaur;
+	}
+.verdana {
+	font-family: Verdana, Verdana, Geneva, sans-serif;
 	}
 
 .title{
@@ -25,9 +39,10 @@ html, body {
 .hidden {
 	display: none;
 	}
-.green {
-	border: 1px solid green;
-	background: #CEF5BF;
+.info-block {
+	border: 2px solid #3d7100;
+	border-radius: 5px;
+	background: url(../images/grid.jpg);
 	}
 .player {
 	display: block;
@@ -46,27 +61,22 @@ html, body {
 .advice-form-external input {
 	display: block;
 	padding: 5px 15px;
-	border: 1px solid red;
+	border: 1px solid #8FC400;
 	font-size: 1em;
-	box-shadow: -3px 3px 0 #B00;
 	width: 90%;
+	border-radius: 3px;
+	margin-bottom: 20px;
 	}
+	.buy-dialog-form > label,
+	.order-dialog-form > label,
+	.advice-form-external > label {
+		font-size: 0.9em;
+		}
 	.buy-dialog-form input[type=submit],
 	.order-dialog-form input[type=submit],
 	.advice-form-external input[type=submit]{
 		margin: 20px auto 0;
 	}
-	.buy-dialog-form input:hover,
-	.order-dialog-form input:hover,
-	.advice-form-external  input:hover{
-		border: 1px solid #D00;
-		}
-	.buy-dialog-form input:focus,
-	.order-dialog-form input:focus,
-	.advice-form-external  input:focus{
-		border: 1px solid #B00;
-		box-shadow: -2px 2px 0 #F00 !important;
-		}
 
 	.ui-icon-closethick {
 		display: block;
@@ -87,31 +97,53 @@ html, body {
 		margin: 10px auto;
 		width: 50%;
 		}
+	.ui-dialog-titlebar.ui-widget-header.ui-corner-all  {
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		background: none;
+		border: solid 1px rgba(0, 0, 0, .4);
+		background-image: -webkit-linear-gradient(top, #C9DE22, #76A231);
+		background-image: -moz-linear-gradient(top, ##C9DE22, #76A231);
+		background-image: -o-linear-gradient(top, #C9DE22, #76A231);
+		background-image: -ms-linear-gradient(top, #C9DE22, #76A231);
+		background-image: linear-gradient(to bottom, #C9DE22, #76A231);
+	}
 
 /*-----------------------------------------------*/
 .header {
 	position: relative;
 	padding: 5px 0;
-	background: black;
 	color: white;
 	}
 	.header .title {
-		color: #CEF5BF;
-		text-shadow: 1px 1px 0 green,
-					-1px -1px 0 green,
-					-1px 1px 0 green,
-					1px -1px 0 green;
-	}
+		/*color: #8acb1e;
+		font-size: 36px;
+		line-height: 30px;*/
+		background: url(../images/logo.png) no-repeat;
+		height: 59px;
+		margin-top: 24px;
+		}
+	.header .title .sub {
+		/* color: #a4a8ac; */
+		}
 
 /*-----------------------------------------------*/
-.fixed-width{
-	width: 717px;
+.page-wrapper{
+	width: 957px;
+	height: 100%;
 	margin: 0 auto;
 	position: relative;
-	padding: 10px 40px;
+	background: white;
+	box-shadow: 0 0 20px black ;
+	}
+.fixed-width{
+	position: relative;
+	margin: 10px 20px;
 	}
 	.refund {
 		padding: 10px;
+		font-style: oblique;
 		}
 		.refund > * {
 			vertical-align: middle;
@@ -138,21 +170,32 @@ html, body {
 	.action {
 		text-align: center;
 		}
+	.action-message {
+		font-size: 1.1em;
+		padding: 10px 0;
+		}
 
 /*-----------------------------------------------*/
 .best-selling {
-	margin: 0 auto;
 	position: relative;
+	width: 700px;
+	margin: 0 auto;
 	}
 	.quick-form-title {
 		margin: 0;
+		font-style: italic;
+		color: #517002;
+		font-size: 1.8em;
 		text-align: center;
 	}
 	.quick-form {
 		width: 53%;
 		display: inline-block;
-		margin: 10px;
+		margin: 19px;
 		vertical-align: top;
+		border: 1px solid #517002;
+		padding: 10px;
+		border-radius: 5px;
 		}
 
 /*-----------------------------------------------*/
@@ -163,63 +206,44 @@ html, body {
 	.device-wrapper{
 		display: inline-block;
 		position: relative;
-		text-align: center;
-		margin: 20px 40px;
 		width: 170px;
+		margin: 20px 35px;
+		padding: 0 5px;
+		text-align: center;
 		}
 		.device-wrapper:hover {
-			outline: 1px solid red;
-			}
-		.device-wrapper:hover .label {
-			box-shadow: -3px 3px 0 #900,
-						-1px 3px 0 #900;
-			}
-		.device-wrapper:hover .buy-button {
-			box-shadow: -3px 3px 0 #900;
+			outline: 1px solid #517002;
+			cursor: pointer;
+		}
+		.label-part {
+			position: absolute;
+			z-index: 0;
+			top: 34px;
+			height: 5px;
+			width: 30px;
+			border: solid 1px #7eac00;
+			border-top-left-radius: 5px;
+			background-image: -webkit-linear-gradient(left, #2b3b00, #537410);
+			background-image:    -moz-linear-gradient(left, #2b3b00, #537410);
+			background-image:     -ms-linear-gradient(left, #2b3b00, #537410);
+			background-image:      -o-linear-gradient(left, #2b3b00, #537410);
+			background-image:         linear-gradient(to right, #2b3b00, #537410);
 			}
 		.label {
-			*zoom: expression(
-				this.runtimeStyle.zoom="1",
-				this.appendChild( document.createElement("small") ).className="after"
-				);
+			position: absolute;
+			z-index: 2;
+			top: 40px;
+			padding: 0 20px;
+			border: solid 1px #7EAC00;
+			border-bottom-left-radius: 3px;
+			background-image: -webkit-linear-gradient(bottom, #506F01, #669013);
+			background-image:    -moz-linear-gradient(bottom, #506F01, #669013);
+			background-image:     -ms-linear-gradient(bottom, #506F01, #669013);
+			background-image:      -o-linear-gradient(bottom, #506F01, #669013);
+			background-image:         linear-gradient(to top, #506F01, #669013);
 			}
-		.label {
-			width: 90px;
-			height: 40px;
-			top: -10px;
-			left: -40px;
-			background: red;
-			margin-right: 40px;
-			padding-left: 10px;
-			padding-right: 5px;
-			position:absolute;
-			box-shadow: -3px 3px 0 #B00,
-						-1px 3px 0 #B00;
-			z-index: 10;
-			}
-			.label:after,
-			.label .after {
-				content:'';
-				position: absolute;
-				border-style: dashed;
-				border-color: transparent;
-				display: inline-block;
-				height: 0;
-				width: 0;
-				line-height: 0;
-				border-style: dashed;
-				border-color: transparent;
-				border-left-style: solid;
-				border-left-color: red;
-				border-width: 20px;
-				top: 0;
-				left: 10px;
-				margin-left: 95px;
-				z-index: -1;
-				}
 			.price {
-				font-weight: bolder;
-				font-family: serif;
+				font-family: Tahoma, Geneva, sans-serif;
 				white-space: nowrap;
 				}
 			.old-price:before,
@@ -227,18 +251,26 @@ html, body {
 				content: '\0000a0';
 				}
 			.old-price {
+				font-weight: bolder;
 				text-decoration: line-through;
-				font-size: 1em;
+				font-size: 0.8em;
 				color: black;
 				}
 			.new-price {
-				font-size: 1.4em;
+				font-size: 1em;
 				line-height: 20px;
 				color: white;
+				text-shadow: 2px 2px 0 #165016;
 				}
 
 		.device-img {
 			margin-bottom: -40px;
+			position: relative;
+			z-index: 1;
+			}
+		.device-info {
+			position: relative;
+			z-index: 1;
 			}
 		.device-caption {
 			position: relative;
@@ -246,63 +278,90 @@ html, body {
 			text-align: center;
 			font-family: sans-serif;
 			font-weight: bolder;
-			text-shadow: 1px 1px 0 white,
-						 -1px -1px 0 white,
-						 1px -1px 0 white,
-						 -1px 1px 0 white;
+			color: white;
+			text-shadow: 1px 1px 0 #517002,
+						 -1px -1px 0 #517002,
+						 1px -1px 0 #517002,
+						 -1px 1px 0 #517002;
 			}
 		.buy-button,
 		.styled-button {
 			position: relative;
-			padding: 5px 15px;
+			padding: 10px 25px;
 			margin: 10px 0;
-			border: none;
 			outline: 0;
-			font-size: 1.4em;
-			font-weight: bolder;
-			background: red;
-			color: white;
-			box-shadow: -3px 3px 0 #B00;
+			font-size: 1em;
+			/*font-weight: bolder;*/
 			cursor: pointer;
+			text-shadow: 0 1px 1px white;
+
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			border-radius: 5px;
+			background-color: white;
+			-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, .4), inset 0 0 7px rgba(255, 255, 255, .4);
+			-moz-box-shadow: 1px 1px 3px rgba(0,0,0,.4), inset 0 0 7px rgba(255,255,255,.4);
+			box-shadow: 1px 1px 3px rgba(0, 0, 0, .4), inset 0 0 7px rgba(255, 255, 255, .4);
+			border: solid 1px rgba(0, 0, 0, .4);
+			background-image: -webkit-linear-gradient(top, #C9DE22, #76A231);
+			background-image: -moz-linear-gradient(top, ##C9DE22, #76A231);
+			background-image: -o-linear-gradient(top, #C9DE22, #76A231);
+			background-image: -ms-linear-gradient(top, #C9DE22, #76A231);
+			background-image: linear-gradient(to bottom, #C9DE22, #76A231);
 			}
-			.buy-button:hover,
-			.styled-button:hover {
-				background: #D00;
-				}
+		.buy-button {
+			padding: 5px 25px;
+		}
 			.buy-button:active,
 			.styled-button:active {
 				top: 1px;
-				right: 1px;
-				background: #B00;
-				box-shadow: -2px 2px 0 #F00 !important;
 				}
 
 /*-----------------------------------------------*/
+.ok {
+	background: url(../images/ok.png) no-repeat 0 5px;
+	padding: 10px 35px;
+	}
 .reasons {
 	padding: 10px 40px;
+	}
+	.reasons ul {
+		padding: 0 155px;
+		width: 530px;
 	}
 	.tick {
 		font-size: 1em;
 		list-style: none;
 		background: url(../images/tick.png) no-repeat 0px 1px;
-		padding-left: 40px;
+		padding: 0 0 30px 80px;
 		}
 		.marked {
-			font-size: 1.2em;
+			font-size: 1.8em;
 			font-weight: bolder;
-			font-family: designosaur, Cambria, serif;
+			text-align: center;
+			color: #3d7100;
+		}
+		.marker {
+			font-size: 1.7em;
+			font-style: oblique;
+			color: #4b4b4b;
 			}
 
 /*-----------------------------------------------*/
 .comments {
-	padding: 0 40px;
-	background: #E4E4E4;
-	border: 1px solid silver;
 	height: 100%;
+	padding: 0 40px;
+	border: 2px solid #336600;
+	border-radius: 5px;
+	background: url(../images/grid.jpg);
 	}
 	.comments .title {
 		width: 600px;
 		margin: 10px auto;
+		text-align: center;
+		font-style: oblique;
+		font-size: 24px;
+		color: #4b4b4b;
 		}
 	.comment{
 		height: 100px;
@@ -317,30 +376,51 @@ html, body {
 			}
 			.username {
 				color: green;
-				font-weight: bolder;
+				font-style: oblique;
+				font-size: 18px;
 				}
 
 /*-----------------------------------------------*/
 .footer {
-	background: black;
-	color: white;
-	text-shadow: 0 1px 0 gray;
 	position: relative;
-	border: 1px solid black;
-}
+	border: solid 1px #7eac00;
+	background-image: -webkit-linear-gradient(bottom, #506f01, #669013);
+	background-image: -moz-linear-gradient(bottom, #506f01, #669013);
+	background-image: -o-linear-gradient(bottom, #506f01, #669013);
+	background-image: -ms-linear-gradient(bottom, #506f01, #669013);
+	background-image: linear-gradient(to top, #506f01, #669013);
+	border-radius: 5px;
+	margin: 20px 20px 0;
+	color: white;
+	text-shadow: 2px 2px 0 #165016;
+	}
 	.phone-wrapper {
+		text-shadow: 2px 2px 0 #165016;
 		position: absolute;
 		right: 0;
-		top: 0;
+		top: 0px;
 		width: 50%;
 		text-align: right;
+		}
+	.header .phone-wrapper {
+		top: 30px;
+		width: 60%;
+		text-align: right;
 		margin-right: 20px;
+		background-image: -webkit-linear-gradient(top, #72C400 0%, #549400 100%);
+		background-image: -moz-linear-gradient(top, #72C400 0%, #549400 100%);
+		background-image: -ms-linear-gradient(top, #72C400 0%, #549400 100%);
+		background-image: -o-linear-gradient(top, #72C400 0%, #549400 100%);
+		background-image: linear-gradient(top, #72C400 0%, #549400 100%);
+		height: 60px;
+		border-radius: 5px;
 		}
 		.phone {
 			text-align: right;
-			font-style: italic;
 			line-height: 105px;
 			font-size: 1.4em;
-			border-bottom: 1px dashed;
+			padding-right: 20px;
 			}
-
+		.header .phone{
+			line-height: 55px;
+			}
