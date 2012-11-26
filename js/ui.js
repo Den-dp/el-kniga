@@ -42,7 +42,7 @@ $(document).ready(function() {
 	$('.order-dialog-button').click(function(elem){
 		$.post(
 			"send.php",
-			$(".order-form").serialize()
+			$(".order-dialog-form").serialize()
 		).done(function( jqXHR, status ) {
 			$( '#order-dialog' ).dialog( "close" );
 			$( "#confirmation-dialog" ).dialog( 'open' );
